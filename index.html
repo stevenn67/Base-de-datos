@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de datos Nuevas Tecnologías de la Información</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .search-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .results-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .article-card {
+            transition: transform 0.3s ease;
+            margin-bottom: 1.5rem;
+            height: 100%;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .keywords {
+            margin-top: 1rem;
+        }
+        
+        .keyword-badge {
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(to right, #4ca1af, #2c3e50);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            transform: scale(1.05);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hidden-content {
+            display: none;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        
+        .methodology-img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+        
+        .article-tabs {
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(to right, #4ca1af, #2c3e50);
+            color: white;
+            border: none;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #2c3e50;
+        }
+        
+        .common-search {
+            background-color: #e8f5e9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header text-center">
+        <div class="container">
+            <h1 class="display-4">Machine Learning Aplicado</h1>
+            <p class="lead">Fundación Universitaria Konrad Lorenz</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introducción -->
+        <section class="search-section fade-in">
+            <h2 class="mb-4">Proceso de Búsqueda Científica</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Temas seleccionados:</h4>
+                    <p class="highlight">1. Machine Learning para predecir expresión de PD-L1 en NSCLC</p>
+                    <p class="highlight">2. Integración de Inteligencia Artificial y Computación Cuántica</p>
+                    <p class="highlight">3. Modelos de Machine Learning para predecir esfuerzo en diseño de software</p>
+                    
+                    <h4>Descripción:</h4>
+                    <p>Esta selección abarca tres áreas tecnológicas diferentes pero complementarias, mostrando aplicaciones avanzadas de machine learning e inteligencia artificial en diversos campos.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Motivación:</h4>
+                    <p>Estos artículos representan avances significativos en sus respectivos campos y demuestran la versatilidad de las técnicas de machine learning e inteligencia artificial en aplicaciones que van desde la salud hasta la computación cuántica y la ingeniería de software.</p>
+                    
+                    <h4>Bases de datos:</h4>
+                    <p class="highlight">Scopus, ScienceDirect</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Búsqueda -->
+        <section class="search-section fade-in">
+            <h2 class="mb-4">Cadena de Búsqueda Unificada</h2>
+            
+            <div class="common-search">
+                <h4 class="text-success">Términos comunes de búsqueda para los tres artículos:</h4>
+                <p class="fs-5 fw-bold">("machine learning" OR "artificial intelligence")</p>
+                <p>Esta cadena base se combinó con términos específicos para cada área de investigación.</p>
+            </div>
+            
+            <div class="article-tabs">
+                <ul class="nav nav-tabs" id="searchTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="article1-tab" data-bs-toggle="tab" data-bs-target="#article1" type="button" role="tab">Artículo 1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="article2-tab" data-bs-toggle="tab" data-bs-target="#article2" type="button" role="tab">Artículo 2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="article3-tab" data-bs-toggle="tab" data-bs-target="#article3" type="button" role="tab">Artículo 3</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-3 border border-top-0" id="searchTabContent">
+                    <div class="tab-pane fade show active" id="article1" role="tabpanel">
+                        <div class="mb-3">
+                            <label class="form-label">Cadena de búsqueda completa:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="(&quot;machine learning&quot; OR &quot;artificial intelligence&quot;) AND (&quot;PD-L1&quot; OR &quot;programmed death ligand 1&quot;) AND (&quot;NSCLC&quot; OR &quot;non small cell lung cancer&quot;)">
+                                <button class="btn btn-custom" onclick="alert('Búsqueda actualizada')">Actualizar</button>
+                            </div>
+                        </div>
+                        <h5>Explicación:</h5>
+                        <ul>
+                            <li><strong>("machine learning" OR "artificial intelligence")</strong>: Términos comunes de IA/ML</li>
+                            <li><strong>("PD-L1" OR "programmed death ligand 1")</strong>: Biomarcador inmunológico.</li>
+                            <li><strong>("NSCLC" OR "non small cell lung cancer")</strong>: Tipo de cáncer de pulmón.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="article2" role="tabpanel">
+                        <div class="mb-3">
+                            <label class="form-label">Cadena de búsqueda completa:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="(&quot;machine learning&quot; OR &quot;artificial intelligence&quot;) AND (&quot;quantum computing&quot; OR &quot;quantum AI&quot;) AND (&quot;systematic review&quot; OR &quot;literature review&quot;)">
+                                <button class="btn btn-custom" onclick="alert('Búsqueda actualizada')">Actualizar</button>
+                            </div>
+                        </div>
+                        <h5>Explicación:</h5>
+                        <ul>
+                            <li><strong>("machine learning" OR "artificial intelligence")</strong>: Términos comunes de IA/ML</li>
+                            <li><strong>("quantum computing" OR "quantum AI")</strong>: Computación cuántica e IA cuántica.</li>
+                            <li><strong>("systematic review" OR "literature review")</strong>: Tipo de estudio de revisión.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="article3" role="tabpanel">
+                        <div class="mb-3">
+                            <label class="form-label">Cadena de búsqueda completa:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="(&quot;machine learning&quot; OR &quot;artificial intelligence&quot;) AND (&quot;software design effort&quot; OR &quot;effort prediction&quot;) AND (&quot;neural networks&quot; OR &quot;support vector regression&quot;)">
+                                <button class="btn btn-custom" onclick="alert('Búsqueda actualizada')">Actualizar</button>
+                            </div>
+                        </div>
+                        <h5>Explicación:</h5>
+                        <ul>
+                            <li><strong>("machine learning" OR "artificial intelligence")</strong>: Términos comunes de IA/ML</li>
+                            <li><strong>("software design effort" OR "effort prediction")</strong>: Estimación de esfuerzo en software.</li>
+                            <li><strong>("neural networks" OR "support vector regression")</strong>: Algoritmos específicos de ML.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="results-table fade-in">
+            <h2 class="mb-4">Resultados de Búsqueda</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Base de datos</th>
+                            <th>Cadena de búsqueda</th>
+                            <th>Cantidad de documentos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="studentName">Tu Nombre</td>
+                            <td>Scopus</td>
+                            <td>("machine learning" OR "artificial intelligence") AND ("PD-L1" OR "programmed death ligand 1") AND ("NSCLC" OR "non small cell lung cancer")</td>
+                            <td>1,578 documentos (1578 identificados, 30 incluidos)</td>
+                        </tr>
+                        <tr>
+                            <td id="studentName2">Tu Nombre</td>
+                            <td>Scopus, Web of Science</td>
+                            <td>("machine learning" OR "artificial intelligence") AND ("quantum computing" OR "quantum AI") AND ("systematic review" OR "literature review")</td>
+                            <td>191 documentos (191 identificados, 29 incluidos)</td>
+                        </tr>
+                        <tr>
+                            <td id="studentName3">Tu Nombre</td>
+                            <td>ScienceDirect</td>
+                            <td>("machine learning" OR "artificial intelligence") AND ("software design effort" OR "effort prediction") AND ("neural networks" OR "support vector regression")</td>
+                            <td>650 documentos (158 identificados, 43 incluidos)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Artículos seleccionados -->
+        <section class="search-section">
+            <h2 class="mb-4">Artículos Seleccionados</h2>
+            
+            <!-- Artículo 1 -->
+            <div class="card article-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Predictive value of machine learning for PD-L1 expression in NSCLC: a systematic review and meta-analysis</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Zheng, T., Li, X., Zhou, L., & Jin, J.</h6>
+                    <p class="card-text"><strong>Publicado en:</strong> World Journal of Surgical Oncology, 2025</p>
+                    <p class="card-text"><strong>DOI:</strong> 10.1186/s12957-025-03847-6</p>
+                    
+                    <button class="btn btn-custom mt-2" onclick="toggleAbstract('abstract1')">Ver resumen</button>
+                    
+                    <div id="abstract1" class="hidden-content mt-3">
+                        <h6>Resumen:</h6>
+                        <p class="card-text">Este estudio es una revisión sistemática y meta-análisis que evalúa el valor predictivo del machine learning para la expresión de PD-L1 en cáncer de pulmón no microcítico (NSCLC). Se incluyeron 30 estudios con 12,898 pacientes. Los resultados mostraron que los modelos basados en radiómica lograron un C-index de 0.799 para predecir PD-L1 ≥1% y 0.771 para PD-L1 ≥50%. Los modelos que combinaban radiómica con características clínicas alcanzaron un C-index de 0.806 y 0.826, respectivamente. Los modelos basados en patómica también mostraron un buen rendimiento. El estudio concluye que el machine learning, especialmente los métodos basados en radiómica, logra una precisión deseable para predecir la expresión de PD-L1 en NSCLC.</p>
+                    </div>
+                    
+                    <div class="keywords">
+                        <h6>Palabras clave:</h6>
+                        <span class="badge bg-primary keyword-badge">machine learning</span>
+                        <span class="badge bg-primary keyword-badge">artificial intelligence</span>
+                        <span class="badge bg-primary keyword-badge">PD-L1</span>
+                        <span class="badge bg-primary keyword-badge">NSCLC</span>
+                        <span class="badge bg-primary keyword-badge">radiomics</span>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>Formato APA:</h6>
+                        <p class="card-text">Zheng, T., Li, X., Zhou, L., & Jin, J. (2025). Predictive value of machine learning for PD-L1 expression in NSCLC: a systematic review and meta-analysis. <em>World Journal of Surgical Oncology</em>, 23(199). https://doi.org/10.1186/s12957-025-03847-6</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Artículo 2 -->
+            <div class="card article-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Integrating artificial intelligence and quantum computing: A systematic literature review of features and applications</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Pineda, V. G., Valencia-Arias, A., Giraldo, F. E. L., & Zapata-Ochoa, E. A.</h6>
+                    <p class="card-text"><strong>Publicado en:</strong> International Journal of Cognitive Computing in Engineering, 2026</p>
+                    <p class="card-text"><strong>DOI:</strong> 10.1016/j.jicee.2025.08.002</p>
+                    
+                    <button class="btn btn-custom mt-2" onclick="toggleAbstract('abstract2')">Ver resumen</button>
+                    
+                    <div id="abstract2" class="hidden-content mt-3">
+                        <h6>Resumen:</h6>
+                        <p class="card-text">Esta revisión sistemática de literatura examina la intersección entre la computación cuántica y la inteligencia artificial, identificando características tecnológicas, requisitos de integración y aplicaciones sectoriales. El estudio sigue la metodología PRISMA 2020 y analiza investigaciones de Scopus y Web of Science. Los hallazgos indican que los principales avances se centran en optimización cuántica, aprendizaje automático cuántico (QML) y criptografía post-cuántica. Sectores como energía, salud y finanzas muestran progresos significativos en la adopción de estas tecnologías. El estudio concluye que aunque la computación cuántica demuestra un potencial sustancial para mejorar la IA, su adopción más amplia sigue limitada por el hardware NISQ, la necesidad de corrección efectiva de errores y la escalabilidad limitada de los algoritmos híbridos cuántico-clásicos.</p>
+                    </div>
+                    
+                    <div class="keywords">
+                        <h6>Palabras clave:</h6>
+                        <span class="badge bg-success keyword-badge">artificial intelligence</span>
+                        <span class="badge bg-success keyword-badge">machine learning</span>
+                        <span class="badge bg-success keyword-badge">quantum computing</span>
+                        <span class="badge bg-success keyword-badge">quantum AI</span>
+                        <span class="badge bg-success keyword-badge">systematic review</span>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>Formato APA:</h6>
+                        <p class="card-text">Pineda, V. G., Valencia-Arias, A., Giraldo, F. E. L., & Zapata-Ochoa, E. A. (2026). Integrating artificial intelligence and quantum computing: A systematic literature review of features and applications. <em>International Journal of Cognitive Computing in Engineering</em>, 7, 26-39. https://doi.org/10.1016/j.jicee.2025.08.002</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Artículo 3 -->
+            <div class="card article-card">
+                <div class="card-body">
+                    <h5 class="card-title">Machine learning models for predicting software design effort</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">López-Martín, C.</h6>
+                    <p class="card-text"><strong>Publicado en:</strong> Science of Computer Programming, 2026</p>
+                    <p class="card-text"><strong>DOI:</strong> 10.1016/j.scico.2025.103385</p>
+                    
+                    <button class="btn btn-custom mt-2" onclick="toggleAbstract('abstract3')">Ver resumen</button>
+                    
+                    <div id="abstract3" class="hidden-content mt-3">
+                        <h6>Resumen:</h6>
+                        <p class="card-text">Este estudio aplica dos modelos de machine learning (red neuronal multicapa MLP y regresión de vectores de soporte ε-SVR) para predecir el esfuerzo de diseño de software (SDEP). Los parámetros de ambos modelos se optimizan mediante algoritmos genéticos y su rendimiento se compara con un modelo de regresión estadística (SRM). Todos los modelos se entrenaron en siete conjuntos de datos seleccionados de un repositorio público internacional de proyectos de software. Los resultados muestran que ε-SVR funcionó estadísticamente mejor que SRM en cinco conjuntos de datos e igual en los dos restantes. MLP superó a SRM en tres conjuntos de datos e igual en los cuatro restantes. En consecuencia, tanto MLP como ε-SVR pueden usarse para SDEP.</p>
+                    </div>
+                    
+                    <div class="keywords">
+                        <h6>Palabras clave:</h6>
+                        <span class="badge bg-info keyword-badge">machine learning</span>
+                        <span class="badge bg-info keyword-badge">artificial intelligence</span>
+                        <span class="badge bg-info keyword-badge">software design effort</span>
+                        <span class="badge bg-info keyword-badge">neural networks</span>
+                        <span class="badge bg-info keyword-badge">support vector regression</span>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>Formato APA:</h6>
+                        <p class="card-text">López-Martín, C. (2026). Machine learning models for predicting software design effort. <em>Science of Computer Programming</em>, 248, 103385. https://doi.org/10.1016/j.scico.2025.103385</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información del desarrollo -->
+        <section class="search-section">
+            <h2 class="mb-4">Desarrollo del Sitio Web</h2>
+            <div class="accordion" id="devAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="htmlHeading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#htmlCollapse" aria-expanded="true" aria-controls="htmlCollapse">
+                            Elementos HTML Utilizados
+                        </button>
+                    </h2>
+                    <div id="htmlCollapse" class="accordion-collapse collapse show" aria-labelledby="htmlHeading" data-bs-parent="#devAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>&lt;section&gt;</strong>: Para dividir las diferentes partes del contenido</li>
+                                <li><strong>&lt;table&gt;</strong>: Para mostrar los resultados de búsqueda en formato tabular</li>
+                                <li><strong>&lt;div&gt;</strong>: Para crear contenedores y estructurar el layout</li>
+                                <li><strong>&lt;button&gt;</strong>: Para elementos interactivos</li>
+                                <li><strong>&lt;span&gt;</strong>: Para aplicar estilos específicos a porciones de texto</li>
+                                <li><strong>&lt;input&gt;</strong>: Para el campo de búsqueda personalizable</li>
+                                <li><strong>&lt;ul&gt; y &lt;li&gt;</strong>: Para listas de elementos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="cssHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cssCollapse" aria-expanded="false" aria-controls="cssCollapse">
+                            Reglas de CSS Implementadas
+                        </button>
+                    </h2>
+                    <div id="cssCollapse" class="accordion-collapse collapse" aria-labelledby="cssHeading" data-bs-parent="#devAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>.header</strong>: Define el estilo del encabezado con gradiente de color</li>
+                                <li><strong>.article-card</strong>: Estilo de las tarjetas de artículo con efecto hover</li>
+                                <li><strong>.highlight</strong>: Resalta elementos importantes del texto</li>
+                                <li><strong>.btn-custom</strong>: Personaliza los botones con gradiente y efectos</li>
+                                <li><strong>.fade-in</strong>: Aplica animación de aparición suave</li>
+                                <li><strong>.hidden-content</strong>: Oculta elementos que se revelan interactivamente</li>
+                                <li><strong>.nav-tabs</strong>: Estilo para las pestañas de navegación</li>
+                                <li><strong>.common-search</strong>: Estilo para la sección de términos comunes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="jsHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsCollapse" aria-expanded="false" aria-controls="jsCollapse">
+                            Funciones JavaScript Implementadas
+                        </button>
+                    </h2>
+                    <div id="jsCollapse" class="accordion-collapse collapse" aria-labelledby="jsHeading" data-bs-parent="#devAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>toggleAbstract(id)</strong>: Muestra/oculta el resumen del artículo específico</li>
+                                <li><strong>changeStudentName()</strong>: Permite personalizar el nombre del estudiante</li>
+                                <li><strong>Animaciones de aparición</strong>: Para los elementos con clase .fade-in</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personalización -->
+        <section class="search-section text-center">
+            <h3 class="mb-3">Personaliza esta información</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="newStudentName" placeholder="Ingresa tu nombre">
+                        <button class="btn btn-custom" onclick="changeStudentName()">Actualizar nombre</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-4">
+        <div class="container">
+            <p>Fundación Universitaria Konrad Lorenz - Nuevas Tecnologías de la Información</p>
+            <p>URL de GitHub Pages: <a href="#" class="text-light">https://stevenn67.github.io/Base-de-datos/</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Funciones JavaScript
+        function toggleAbstract(id) {
+            const abstract = document.getElementById(id);
+            abstract.style.display = abstract.style.display === 'none' || abstract.style.display === '' ? 'block' : 'none';
+        }
+        
+        function changeStudentName() {
+            const newName = document.getElementById('newStudentName').value;
+            if (newName.trim() !== '') {
+                document.getElementById('studentName').textContent = newName;
+                document.getElementById('studentName2').textContent = newName;
+                document.getElementById('studentName3').textContent = newName;
+                alert(`Nombre actualizado a: ${newName}`);
+            } else {
+                alert('Por favor ingresa un nombre válido');
+            }
+        }
+        
+        // Efecto de aparición progresiva
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.fade-in');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
